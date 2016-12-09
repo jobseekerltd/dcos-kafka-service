@@ -94,15 +94,13 @@ def get_dcos_command(command):
 
 @as_json
 def get_kafka_command(command):
-    result, error = shakedown.run_dcos_command(
-        '{} {}'.format(PACKAGE_NAME, command)
-    )
-    if error:
+    full_command = '{} {}'.format(PACKAGE_NAME, command)
+    stdout, stderr, return_code = shakedown.run_dcos_command(full_command)
+    if return_code:
         raise RuntimeError(
-            'command dcos {} {} failed'.format(command, PACKAGE_NAME)
-        )
+            'command `dcos {}` failed (return_code = {})'.format(full_command, return_code))
 
-    return result
+    return stdout
 
 
 def get_kafka_config():
