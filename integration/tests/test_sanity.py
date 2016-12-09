@@ -287,8 +287,6 @@ def test_plan():
     assert get_kafka_command('plan show')
     assert get_kafka_command('plan continue')
     assert get_kafka_command('plan interrupt')
-    # get_kafka_command('plan force')
-    # get_kafka_command('plan restart')
 
 
 @pytest.mark.sanity
